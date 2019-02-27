@@ -1,0 +1,22 @@
+{% extends 'forum/base.html' %}
+
+{% block content %}
+    <h1>ABOUT</h1>
+
+
+
+{% for category in categories.all %}
+
+{{ category.name }}
+{{category.summary}}
+
+
+             <img src="super.jpg" />
+
+
+
+{{ category.image }}
+{% endfor %}
+
+{% endblock content %}
+

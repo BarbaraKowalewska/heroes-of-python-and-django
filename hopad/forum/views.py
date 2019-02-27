@@ -1,7 +1,11 @@
 from django.shortcuts import render
 
-def index(request):
-    context = {
-        'people': 'basia, adam, janek'
-    }
-    return render(request, 'forum/index.html', context)
+
+from .models import Categories
+
+
+def forum_home(request):
+    categories = Categories.objects
+
+    context = {'categories': categories }
+    return render(request,'forum/forum_home.html', context)
