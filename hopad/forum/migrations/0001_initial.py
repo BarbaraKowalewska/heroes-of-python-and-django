@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=50)),
-                ('image', models.ImageField(default='forum/categories/images/default.jpg', upload_to='forum/categories/images/')),
+                ('image', models.ImageField(default='forum/category/images/default.jpg', upload_to='forum/category/images/')),
                 ('summary', models.CharField(max_length=200)),
             ],
         ),
