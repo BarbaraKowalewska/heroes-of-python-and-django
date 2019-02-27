@@ -5,7 +5,7 @@
 
 {% for category in categories.all %}
 
-    {{ category.name }} <br>
+   <a href="{% url 'forum:forum_topics' category.name %}"> {{ category.name }} </a>  <br>
     {{category.summary}}<br>
     <img src="{{category.image.url}}"/>
 <br>

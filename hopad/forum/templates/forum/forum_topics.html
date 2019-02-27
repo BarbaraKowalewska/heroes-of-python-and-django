@@ -1,0 +1,16 @@
+{% extends 'forum/base.html' %}
+
+{% block content %}
+
+
+{% for topic  in topics.all %}
+
+    {{ topic.title }} <br>
+    {{topic.content}}<br>
+
+
+
+{% endfor %}
+
+{% endblock content %}
+
