@@ -1,0 +1,16 @@
+{% extends 'forum/base.html' %}
+
+{% block content %}
+
+
+{% for post  in posts.all %}
+
+    {{ post.creation_date }} <br>
+    {{ post.content }} <br>
+
+ {{category_name}}
+
+{% endfor %}
+
+{% endblock content %}
+

@@ -5,8 +5,11 @@
 
 {% for topic  in topics.all %}
 
-    {{ topic.title }} <br>
+    <a href="{% url 'forum:forum_posts' category_name topic.id %}">{{ topic.title }}</a>
+
+     <br>
     {{topic.content}}<br>
+
 
 
 
