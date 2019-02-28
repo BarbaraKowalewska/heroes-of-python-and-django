@@ -19,8 +19,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('forum/', include('forum.urls')),
     path('admin/', admin.site.urls),
+    path('forum/', include('forum.urls')),
+    path('accounts/', include('accounts.urls')),
 ]
 
 if settings.DEBUG:
