@@ -1,17 +1,29 @@
 {% extends 'forum/base.html' %}
 
 {% block content %}
-<h1>ABOUT</h1>
 
-{% for category in categories.all %}
-
-   <a href="{% url 'forum:forum_topics' category.name %}"> {{ category.name }} </a>  <br>
-    {{category.summary}}<br>
-    <img src="{{category.image.url}}"/>
-<br>
+<div class="container">
 
 
-{% endfor %}
+    {% for category in categories.all %}
+
+
+    <div class="media">
+        <div class="media-left ">
+            <img src="{{category.image.url}}" class="media-object rounded-circle" style="width:60px">
+        </div>
+
+        <div class="media-body ml-3">
+            <h4 class="media-heading"><a href="{% url 'forum:forum_topics' category.name %}">{{ category.name }}</a>
+            </h4>
+            <p> {{category.summary}}</p>
+        </div>
+    </div>
+
+    {% endfor %}
+
+</div>
+
 
 {% endblock content %}
 

@@ -5,12 +5,18 @@
 
 {% for topic  in topics.all %}
 
-    <a href="{% url 'forum:forum_posts' category_name topic.id %}">{{ topic.title }}</a>
 
-     <br>
-    {{topic.content}}<br>
+<div class="media">
+    <div class="media-left ">
+        <img src="#" class="media-object rounded-circle" style="width:60px">
+    </div>
 
-
+    <div class="media-body ml-3">
+        <h4 class="media-heading"><a href="{% url 'forum:forum_posts' category_name topic.id %}">{{ topic.title }}</a>
+        </h4>
+        <p> {{topic.content}}</p>
+    </div>
+</div>
 
 
 {% endfor %}
