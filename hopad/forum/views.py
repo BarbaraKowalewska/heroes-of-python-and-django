@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Category, Topic, Post
-from .forms import NewTopicForm
+from .forms import NewTopicForm, NewPostForm
 
 
 def forum_home(request):
@@ -25,6 +25,7 @@ def forum_posts(request, category_name, topic_id):
     posts = Post.objects.filter(topic=topic_id)
     context = {
         'category_name': category_name,
+        'topic_id': topic_id,
         'posts': posts
         }
     return render(request, 'forum/forum_posts.html', context)
@@ -49,5 +50,25 @@ class NewTopic(LoginRequiredMixin, View):
         return render(request, self.template_name, {'form': form})
 
 
+class NewPost(LoginRequiredMixin, View):
+    form_class = NewPostForm
+    initial = {'key': 'value'}
+    template_name = 'forum/new_post.html'
 
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form': form,
+                                                    'category_name': self.kwargs['category_name'],
+                                                    'topic_id': self.kwargs['topic_id']})
 
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            full_form = form.save(commit=False)
+            full_form.topic = Topic.objects.get(pk=self.kwargs['topic_id'])
+            full_form.user = request.user
+            full_form.save()
+            return redirect('forum:forum_posts',
+                            category_name=self.kwargs['category_name'],
+                            topic_id=self.kwargs['topic_id'])
+        return render(request, self.template_name, {'form': form})
