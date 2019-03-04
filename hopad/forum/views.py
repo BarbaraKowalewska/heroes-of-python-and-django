@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Category, Topic, Post
 from .forms import NewTopicForm
 
@@ -29,7 +30,7 @@ def forum_posts(request, category_name, topic_id):
     return render(request, 'forum/forum_posts.html', context)
 
 
-class NewTopic(View):
+class NewTopic(LoginRequiredMixin, View):
     form_class = NewTopicForm
     initial = {'key': 'value'}
     template_name = 'forum/new_topic.html'
