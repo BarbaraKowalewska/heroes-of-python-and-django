@@ -2,12 +2,14 @@
 
 {% block content %}
 
+    <a class="nav-item nav-link" href="{% url 'forum:new_post' category_name topic_id %}">New Post</a>
+
 {% for post  in posts.all %}
 
 
 <div class="media">
     <div class="media-left ">
-        <img src="#" class="media-object rounded-circle" style="width:60px">
+        <img src="{{ post.user.account.image.url }}" class="media-object rounded-circle" style="width:60px">
     </div>
 
     <div class="media-body ml-3">
@@ -15,8 +17,6 @@
         <p> {{ post.content }}</p>
     </div>
 </div>
-
-<!-- TODO: pass Topic object and display it at the top-->
 
 
 {% endfor %}

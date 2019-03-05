@@ -2,24 +2,20 @@
 
 {% block content %}
 
+    {% for topic  in topics.all %}
+        <div class="media">
+            <div class="media-left ">
+                <img src="{{topic.user.account.image.url}}" class="media-object rounded-circle" style="width:60px">
+            </div>
 
-{% for topic  in topics.all %}
+            <div class="media-body ml-3">
+                <h4 class="media-heading"><a
+                        href="{% url 'forum:forum_posts' category_name topic.id %}">{{ topic.title }}</a>
+                </h4>
+                <p> {{ topic.content }} <i class="ml-4 fa fa-trash"></i> </p>
+            </div>
 
-
-<div class="media">
-    <div class="media-left ">
-        <img src="#" class="media-object rounded-circle" style="width:60px">
-    </div>
-
-    <div class="media-body ml-3">
-        <h4 class="media-heading"><a href="{% url 'forum:forum_posts' category_name topic.id %}">{{ topic.title }}</a>
-        </h4>
-        <p> {{topic.content}}</p>
-    </div>
-</div>
-
-
-{% endfor %}
-
+        </div>
+    {% endfor %}
 {% endblock content %}
 
