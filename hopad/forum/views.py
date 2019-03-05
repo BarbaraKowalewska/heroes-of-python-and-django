@@ -1,8 +1,9 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.views import View
-from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Category, Topic, Post
+
 from .forms import NewTopicForm, NewPostForm
+from .models import Category, Topic, Post
 
 
 def forum_home(request):
@@ -27,7 +28,7 @@ def forum_posts(request, category_name, topic_id):
         'category_name': category_name,
         'topic_id': topic_id,
         'posts': posts
-        }
+    }
     return render(request, 'forum/forum_posts.html', context)
 
 

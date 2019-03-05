@@ -1,4 +1,5 @@
 from django.urls import path
+
 from . import views
 
 app_name = 'forum'
@@ -8,6 +9,4 @@ urlpatterns = [
     path('new-topic', views.NewTopic.as_view(), name='new_topic'),
     path('<str:category_name>/topics/<int:topic_id>', views.forum_posts, name='forum_posts'),
     path('<str:category_name>/topics/<int:topic_id>/new-post', views.NewPost.as_view(), name='new_post'),
-
 ]
-
