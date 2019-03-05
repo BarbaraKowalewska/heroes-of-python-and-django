@@ -13,8 +13,16 @@
     </div>
 
     <div class="media-body ml-3">
-        <h4 class="media-heading">{{ post.creation_date }}</h4>
-        <p> {{ post.content }}</p>
+        <h4 class="media-heading">
+            {{ post.creation_date }}
+            <form style="display:inline" method="post" action="{% url 'forum:delete_post' category_name topic_id post.id  %}">
+                {% csrf_token %}
+                <button type="submit" style="border:none;padding: 0;background:none;"><i class="ml-4 fa fa-trash"></i></button>
+            </form>
+        </h4>
+        <p>
+            {{ post.content }}
+        </p>
     </div>
 </div>
 

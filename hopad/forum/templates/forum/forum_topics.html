@@ -9,10 +9,16 @@
             </div>
 
             <div class="media-body ml-3">
-                <h4 class="media-heading"><a
-                        href="{% url 'forum:forum_posts' category_name topic.id %}">{{ topic.title }}</a>
+                <h4 class="media-heading">
+                    <a href="{% url 'forum:forum_posts' category_name topic.id %}">{{ topic.title }}</a>
+                    <form style="display:inline" method="post" action="{% url 'forum:delete_topic' category_name topic.id %}">
+                        {% csrf_token %}
+                        <button type="submit" style="border:none;padding: 0;background:none;"><i class="ml-4 fa fa-trash"></i></button>
+                    </form>
                 </h4>
-                <p> {{ topic.content }} <i class="ml-4 fa fa-trash"></i> </p>
+                <p>
+                    {{ topic.content }}
+                </p>
             </div>
 
         </div>
