@@ -4,4 +4,4 @@
 
 .xml
 
-.pyc
+*.pyc
