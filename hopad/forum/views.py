@@ -1,8 +1,10 @@
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render, redirect
 from django.views import View
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .models import Category, Topic, Post
+
 from .forms import NewTopicForm, NewPostForm
+from .models import Category, Topic, Post
+
 
 def forum_home(request):
     categories = Category.objects
@@ -26,7 +28,7 @@ def forum_posts(request, category_name, topic_id):
         'category_name': category_name,
         'topic_id': topic_id,
         'posts': posts
-        }
+    }
     return render(request, 'forum/forum_posts.html', context)
 
 
@@ -42,10 +44,12 @@ class NewTopic(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         if form.is_valid():
-            full_form = form.save(commit=False)
-            full_form.user = request.user
-            full_form.save()
-            return redirect('forum:forum_home')
+            topic = form.save(commit=False)
+            topic.user = request.user
+            topic.save()
+            return redirect('forum:forum_posts',
+                            category_name=topic.category,
+                            topic_id=topic.id)
         return render(request, self.template_name, {'form': form})
 
 
@@ -63,10 +67,10 @@ class NewPost(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         if form.is_valid():
-            full_form = form.save(commit=False)
-            full_form.topic = Topic.objects.get(pk=self.kwargs['topic_id'])
-            full_form.user = request.user
-            full_form.save()
+            post = form.save(commit=False)
+            post.topic = Topic.objects.get(pk=self.kwargs['topic_id'])
+            post.user = request.user
+            post.save()
             return redirect('forum:forum_posts',
                             category_name=self.kwargs['category_name'],
                             topic_id=self.kwargs['topic_id'])
