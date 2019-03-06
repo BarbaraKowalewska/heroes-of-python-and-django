@@ -2,6 +2,7 @@ from .utils import ChoiceEnum
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from PIL import Image
 
 
 class Towns(ChoiceEnum):
@@ -27,5 +28,16 @@ class Account(models.Model):
     image = models.ImageField(default='accounts/account/default/troglodyte.jpg',
                               upload_to='accounts/account/user_images')
 
+    def __str__(self):
+        return f'{self.user.username} Profile'
 
+    def save(self, *args, **kwargs):
+        super(Account, self).save(*args, **kwargs)
+
+        img = Image.open(self.image.path)
+
+        if img.height > 300 or img.width> 300:
+            output_size = (300,300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
 

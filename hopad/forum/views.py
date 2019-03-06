@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render, redirect
 from django.views import View
 
@@ -75,3 +75,36 @@ class NewPost(LoginRequiredMixin, View):
                             category_name=self.kwargs['category_name'],
                             topic_id=self.kwargs['topic_id'])
         return render(request, self.template_name, {'form': form})
+
+
+class DeletePost(LoginRequiredMixin, UserPassesTestMixin, View):
+
+    def test_func(self):
+        post_id = self.kwargs['post_id']
+        post_author = Post.objects.get(pk=post_id).user
+        if self.request.user == post_author:
+            return True
+        return False
+
+    def post(self, request, **kwargs):
+        post_id = kwargs['post_id']
+        Post.objects.filter(pk=post_id).delete()
+        return redirect('forum:forum_posts',
+                        category_name=self.kwargs['category_name'],
+                        topic_id=self.kwargs['topic_id'])
+
+
+class DeleteTopic(LoginRequiredMixin, UserPassesTestMixin, View):
+
+    def test_func(self):
+        topic_id = self.kwargs['topic_id']
+        topic_author = Topic.objects.get(pk=topic_id).user
+        if self.request.user == topic_author:
+            return True
+        return False
+
+    def post(self, request, **kwargs):
+        topic_id = kwargs['topic_id']
+        Topic.objects.filter(pk=topic_id).delete()
+        return redirect('forum:forum_topics',
+                        category_name=self.kwargs['category_name'])
