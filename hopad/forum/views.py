@@ -1,5 +1,3 @@
-from django.contrib.auth.decorators import user_passes_test
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -91,6 +89,7 @@ class DeletePost(LoginRequiredMixin, UserPassesTestMixin, View):
                         category_name=self.kwargs['category_name'],
                         topic_id=self.kwargs['topic_id'])
 
+
 class DeleteTopic(LoginRequiredMixin, UserPassesTestMixin, View):
 
     def test_func(self):
@@ -105,4 +104,3 @@ class DeleteTopic(LoginRequiredMixin, UserPassesTestMixin, View):
         Topic.objects.filter(pk=topic_id).delete()
         return redirect('forum:forum_topics',
                         category_name=self.kwargs['category_name'])
-
