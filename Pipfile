@@ -11,6 +11,7 @@ psycopg2 = "*"
 psycopg2-binary = "*"
 pillow = "*"
 django-crispy-forms = "*"
+djangorestframework = "*"
 
 [requires]
 python_version = "3.7"
