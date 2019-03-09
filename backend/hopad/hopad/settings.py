@@ -25,7 +25,7 @@ SECRET_KEY = '40io_ey(=d9krn89%z55x$stcr!e9)me61_1#&hq_q=bp#!o)^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0']
 
 
 # Application definition
@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'forum.apps.ForumConfig',
     'crispy_forms',
     'rest_framework',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,6 +45,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -135,3 +138,11 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'forum:forum_home'
 
 LOGIN_URL = 'accounts:login'
+
+
+# Cross-Origin-Resources-Sharing config
+# Allowed hosts:
+
+CORS_ORIGIN_WHITELIST = (
+    'localhost:3000',
+)
