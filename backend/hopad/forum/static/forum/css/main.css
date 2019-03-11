@@ -1,0 +1,57 @@
+body {
+  background-image: url("../images/h3_background_blue.png");
+  margin-top: 5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #444444;
+}
+
+ul {
+  margin: 0;
+}
+
+.navbar {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-bottom: 1px inset gold;
+}
+
+.navbar a{
+  color: #ffd700;
+  border-bottom: 1px inset rgba(0, 0, 0, 0.0) ;
+}
+
+.navbar a:hover {
+  color: #fff3b2;
+  border-bottom: 1px inset #fff3b2;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+}
+
+.dropdown-menu.show {
+    border: 1px inset gold;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.dropdown-menu.show > li{
+  margin-left: 8px;
+}
+
+.dropdown-menu.show > li a:hover{
+  border-bottom: 0 ;
+}
+
+#navbar-hamburger{
+  color: #ffd700;
+}
+
+#navbar-hamburger:hover{
+  color: #fff3b2;
+}

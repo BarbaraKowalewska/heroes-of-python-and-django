@@ -1,0 +1,32 @@
+{% extends 'forum/base.html' %}
+
+{% block content %}
+
+    <a class="nav-item nav-link" href="{% url 'forum:new_post' category_name topic_id %}">New Post</a>
+
+{% for post  in posts.all %}
+
+
+<div class="media">
+    <div class="media-left ">
+        <img src="{{ post.user.account.image.url }}" class="media-object rounded-circle" style="width:60px">
+    </div>
+
+    <div class="media-body ml-3">
+        <h4 class="media-heading">
+            {{ post.creation_date }}
+            <form style="display:inline" method="post" action="{% url 'forum:delete_post' category_name topic_id post.id  %}">
+                {% csrf_token %}
+                <button type="submit" style="border:none;padding: 0;background:none;"><i class="ml-4 fa fa-trash"></i></button>
+            </form>
+        </h4>
+        <p>
+            {{ post.content }}
+        </p>
+    </div>
+</div>
+
+
+{% endfor %}
+
+{% endblock content %}
