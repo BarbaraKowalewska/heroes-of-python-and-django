@@ -27,5 +27,3 @@ class Post(models.Model):
     content = models.TextField()
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
     score = models.IntegerField(default=0)
-
-
