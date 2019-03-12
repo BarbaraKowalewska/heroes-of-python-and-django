@@ -5,3 +5,5 @@
 .xml
 
 *.pyc
+
+node_modules/*
