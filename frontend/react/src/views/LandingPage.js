@@ -1,6 +1,7 @@
 import React from "react";
 
 import HJumbotron from "../components/HJumbotron";
+import Hcard from "../components/Hcard";
 
 class LandingPage extends React.Component {
 
@@ -21,7 +22,7 @@ class LandingPage extends React.Component {
 
     render() {
         return (
-            <HJumbotron categories={this.state.categories}/>
+            <HJumbotron/>
         );
     }
 }
