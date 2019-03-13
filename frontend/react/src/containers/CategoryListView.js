@@ -1,6 +1,6 @@
 import React from 'react';
+import Hcard from "../components/Hcard";
 
-import Category from '../components/Category';
 
 class CategoryListView extends React.Component {
 
@@ -21,7 +21,7 @@ class CategoryListView extends React.Component {
 
     render() {
         return (
-            <Category categories={this.state.categories}/>
+            <Hcard categories={this.state.categories}/>
         );
     }
 }
