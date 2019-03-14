@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 
-import HLayout from './containers/HLayout';
+import HLayout from './layouts/HLayout';
 import BaseRouter from './routes';
 import {BrowserRouter as Router} from 'react-router-dom';
 

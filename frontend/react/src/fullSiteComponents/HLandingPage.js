@@ -1,9 +1,9 @@
 import React from "react";
 
 import HJumbotron from "../components/HJumbotron";
+import CategoryListView from "../containers/CategoryListView";
 
-class LandingPage extends React.Component {
-
+class HLandingPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -21,11 +21,12 @@ class LandingPage extends React.Component {
 
     render() {
         return (
-            <HJumbotron categories={this.state.categories}/>
+            <div>
+            <HJumbotron/>
+            <CategoryListView/>
+            </div>
         );
     }
 }
 
-
-
-export default LandingPage;
+export default HLandingPage;

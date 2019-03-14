@@ -3,8 +3,8 @@ import styled from 'styled-components'
 
 
 const StyledFooter = styled.footer`
-    flex: 0 1 40px;
-    width: 100%;
+ bottom: 0;
+ width: 100%;
     color: grey;
     text-align: center;
     background-color: #343a40;
@@ -12,16 +12,17 @@ const StyledFooter = styled.footer`
     -webkit-box-shadow: 10px 10px 90px 12px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px 10px 90px 12px rgba(0,0,0,0.75);
     box-shadow: 10px 10px 90px 12px rgba(0,0,0,0.75);
-`
+`;
 
 
 const StyledFooterText = styled.p`
-    padding: 15px 1px 1px 1px;
+    padding: 10px 0px 10px 0px;
+    margin: 0 0 0 0;
       :hover {
     color: red;
     cursor: pointer;
   }
-`
+`;
 
 
 const HFooter = (props) => {

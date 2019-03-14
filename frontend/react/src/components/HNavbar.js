@@ -1,24 +1,18 @@
 import React from 'react';
-import {
-    Collapse,
-    DropdownItem,
-    DropdownMenu,
-    DropdownToggle,
-    Nav,
-    Navbar,
-    NavbarToggler,
-    NavItem,
-    UncontrolledDropdown
-} from 'reactstrap';
 import styled from "styled-components";
 
 
-const HNavbarStyles = {
-    padding: '10px 10px',
-    flex: '0 1 auto'
-}
+const StyledNav = styled.nav`
+    padding: 10px 10px;
+    flex: 0 1 auto;
+    background-color: #343a40;
+    -webkit-box-shadow: 3px 3px 45px 2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 45px 2px rgba(0,0,0,0.75);
+    box-shadow: 3px 3px 45px 2px rgba(0,0,0,0.75);
+`;
 
-const StyledNameText = styled.p`
+
+const StyledNavText = styled.a`
     color: whitesmoke;
     font-size: 24px;
     padding: 0 0 0 0;
@@ -28,68 +22,44 @@ const StyledNameText = styled.p`
       :hover {
     color: red;
     cursor: pointer;
-`
+    text-decoration: none;
+`;
 
-const DropdownToggleStyle = {
-    color: 'whitesmoke',
-    fontSize: '24px',
-    padding: '0 0 0 0',
-    margin: 'auto',
-    marginLeft: '10px',
-    fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif'
-}
 
 class HNavbar extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.toggle = this.toggle.bind(this);
-        this.state = {
-            isOpen: false
-        };
-    }
-
-    toggle() {
-        this.setState({
-            isOpen: !this.state.isOpen
-        });
-    }
-
     render() {
         return (
-            <div>
-                <Navbar style={HNavbarStyles} color="dark" dark sticky expand="md">
-                    <StyledNameText href="/">Heroes of Python & Django</StyledNameText>
-                    <NavbarToggler onClick={this.toggle}/>
-                    <Collapse isOpen={this.state.isOpen} navbar>
-                        <Nav className="ml-auto" navbar>
-                            <NavItem>
-                                <StyledNameText href="/components/">Log In</StyledNameText>
-                            </NavItem>
-                            <NavItem>
-                                <StyledNameText href="https://github.com/reactstrap/reactstrap">Register</StyledNameText>
-                            </NavItem>
-                            <UncontrolledDropdown nav inNavbar>
-                                <DropdownToggle style={DropdownToggleStyle} nav caret>
-                                    Options
-                                </DropdownToggle>
-                                <DropdownMenu right>
-                                    <DropdownItem>
-                                        Option 1
-                                    </DropdownItem>
-                                    <DropdownItem>
-                                        Option 2
-                                    </DropdownItem>
-                                    <DropdownItem divider/>
-                                    <DropdownItem>
-                                        Reset
-                                    </DropdownItem>
-                                </DropdownMenu>
-                            </UncontrolledDropdown>
-                        </Nav>
-                    </Collapse>
-                </Navbar>
-            </div>
+            <StyledNav className="navbar navbar-expand-lg navbar-light">
+                <StyledNavText href="#">Heroes of Python & Django</StyledNavText>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div id="navbarNavDropdown" className="navbar-collapse collapse">
+                    <ul className="navbar-nav mr-auto">
+                    </ul>
+
+                    <ul className="navbar-nav">
+                        <li className="nav-item">
+                            <StyledNavText href="#">Login</StyledNavText>
+                        </li>
+                        <li className="nav-item">
+                            <StyledNavText href="#">Register</StyledNavText>
+                        </li>
+                        <li className="nav-item dropdown">
+                            <StyledNavText className="dropdown-toggle" href="http://example.com"
+                                           id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                           aria-expanded="false">
+                                Stuff
+                            </StyledNavText>
+                            <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                                <a className="dropdown-item" href="https://www.google.com/">Sftuff1</a>
+                                <a className="dropdown-item" href="https://www.google.com/">Stuff2</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </StyledNav>
         );
     }
 }

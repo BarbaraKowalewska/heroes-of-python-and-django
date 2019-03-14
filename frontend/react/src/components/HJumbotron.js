@@ -1,19 +1,15 @@
 import React from 'react';
-import {Jumbotron} from 'reactstrap';
 import styled from 'styled-components'
 
 
-const HJumbotronStyles = {
-    padding: '0 0 0 0',
-    heigth: '100%',
-    width: '100%',
-    backgroundImage: `url(${'https://4.bp.blogspot.com/-nNxeWQ6DRto/V1n_j_mWO1I/AAAAAAAAGnY/5Ke4uV3BfnoAbZdz6XFICSKcJgk5XS1PwCLcB/s1600/wyverns%2Btail%2Bcoast%2Bfor%2BSoD.png'})`,
-    textAlign: 'center',
-}
+const StyledJumbotron = styled.div`
+    background-image: url('https://4.bp.blogspot.com/-nNxeWQ6DRto/V1n_j_mWO1I/AAAAAAAAGnY/5Ke4uV3BfnoAbZdz6XFICSKcJgk5XS1PwCLcB/s1600/wyverns%2Btail%2Bcoast%2Bfor%2BSoD.png');
+    text-align: center;
+`;
 
 
 const LandingPageOverlay = styled.div`
-    padding: 5% 5%;
+    padding: 4% 4%;
     heigth: 100%;
     width: 100%;
     background-color: rgba(0,0,0,0.7);
@@ -21,7 +17,7 @@ const LandingPageOverlay = styled.div`
     -webkit-box-shadow: 10px 10px 90px 12px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px 10px 90px 12px rgba(0,0,0,0.75);
     box-shadow: 10px 10px 90px 12px rgba(0,0,0,0.75);
-`
+`;
 
 
 const HopadMainName = styled.h1`
@@ -37,12 +33,12 @@ const HopadMainName = styled.h1`
     color: red;
     cursor: pointer;
   }
-`
+`;
 
 
 const HJumbotron = (props) => {
     return (
-        <Jumbotron style={HJumbotronStyles}>
+        <StyledJumbotron className="jumbotron-fluid">
             <LandingPageOverlay>
                 <HopadMainName>
                     Heroes of Python & Django
@@ -51,9 +47,8 @@ const HJumbotron = (props) => {
                     <span aria-label="EMOJIS" role={"img"}>👹🐲👺</span>
                 </HopadMainName>
             </LandingPageOverlay>
-        </Jumbotron>
+        </StyledJumbotron>
     );
 };
-
 
 export default HJumbotron;
