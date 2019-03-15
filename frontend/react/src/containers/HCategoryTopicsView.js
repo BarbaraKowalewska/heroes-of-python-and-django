@@ -38,7 +38,7 @@ class HCategoryTopicsView extends React.Component {
 
     render() {
         return (
-            <ul className="list-unstyled">
+            <ul className="list-unstyled container">
                 {this.createListOfTopics()}
             </ul>
         );
