@@ -1,7 +1,7 @@
 import React from "react";
 
 import HJumbotron from "../components/HJumbotron";
-import CategoryListView from "../containers/CategoryListView";
+import HCategoryListView from "../containers/HCategoryListView";
 
 class HLandingPage extends React.Component {
     constructor(props) {
@@ -23,7 +23,7 @@ class HLandingPage extends React.Component {
         return (
             <div>
             <HJumbotron/>
-            <CategoryListView/>
+            <HCategoryListView/>
             </div>
         );
     }

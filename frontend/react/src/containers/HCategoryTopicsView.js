@@ -19,21 +19,20 @@ class HCategoryTopicsView extends React.Component {
     }
 
 
-    createListOfTopics(){
+    createListOfTopics() {
         let topics = this.state.topics;
-        let listOfTopics = []
+        let listOfTopics = [];
 
-        if (topics.length === 0){
+        if (topics.length === 0) {
             return;
         }
 
-        topics.map( (topic) => {
-            listOfTopics.push(<HCategoryTopic topic={topic} />)
+        topics.map((topic) => {
+            return listOfTopics.push(<HCategoryTopic topic={topic}/>)
         });
 
         return listOfTopics
     }
-
 
 
     render() {

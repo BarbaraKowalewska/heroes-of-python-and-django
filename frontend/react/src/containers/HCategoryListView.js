@@ -2,17 +2,26 @@ import React from 'react';
 
 import HCard from "../components/HCard";
 
-class CategoryListView extends React.Component {
+class HCategoryListView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            endpoint: "http://127.0.0.1:8000/api/forum",
+            host: "",
             categories: []
         };
     }
 
 
     componentDidMount() {
-        fetch("http://127.0.0.1:8000/api/forum/")
+        fetch(this.state.endpoint)
+            .then(data => {
+                    var parser = document.createElement('a');
+                    parser.href = data.url;
+                    this.setState({host: parser.origin});
+                    return data;
+                }
+            )
             .then(data => data.json())
             .then((data) => this.setState({categories: data}))
     }
@@ -33,7 +42,7 @@ class CategoryListView extends React.Component {
         for (let i = 0; i < rowsQuantity; i++) {
             let row = [];
             for (let j = 0; j < itemsInRow; j++) {
-                row.push(< HCard category={items[j + (itemsInRow * i)]}/>);
+                row.push(< HCard host={this.state.host} category={items[j + (itemsInRow * i)]}/>);
             }
             container.push(<div className="row">{row}</div>)
         }
@@ -41,7 +50,8 @@ class CategoryListView extends React.Component {
         if (itemsInLastRow !== 0) {
             let row = [];
             for (let i = 0; i < itemsInLastRow; i++) {
-                row.push(< HCard category={items[rowsQuantity * itemsInRow + i]}/>);
+                row.push(< HCard host={this.state.host}
+                                 category={items[rowsQuantity * itemsInRow + i]}/>);
             }
             container.push(<div className="row">{row}</div>)
         }
@@ -59,4 +69,4 @@ class CategoryListView extends React.Component {
     }
 }
 
-export default CategoryListView;
+export default HCategoryListView;

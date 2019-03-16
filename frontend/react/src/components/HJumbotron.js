@@ -9,7 +9,7 @@ const StyledJumbotron = styled.div`
 
 
 const LandingPageOverlay = styled.div`
-    padding: 4% 4%;
+    padding: 1% 1%;
     heigth: 100%;
     width: 100%;
     background-color: rgba(0,0,0,0.7);

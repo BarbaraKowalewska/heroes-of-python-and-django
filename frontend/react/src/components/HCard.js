@@ -28,7 +28,7 @@ const HCard = (props) => {
     return (
         <StyledCardContainer className="col-3 my-4 border-secondary">
             <StyledCard className="card h-100 rounded">
-                <img className="card-img-top" src={'http://localhost:8000' + props.category.image}
+                <img className="card-img-top" src={props.host + props.category.image}
                      alt=""/>
                 <StyledCardBody className="card-body">
                     <h3 className="card-title text-center">{props.category.name}</h3>
