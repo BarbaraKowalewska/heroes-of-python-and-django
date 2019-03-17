@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-import { withRouter } from "react-router-dom";
-
+import {withRouter} from "react-router-dom";
 
 
 const StyledCardContainer = styled.div`
@@ -9,6 +8,7 @@ const StyledCardContainer = styled.div`
     padding-right: 0 !important;
   }
 `;
+
 
 const StyledCard = styled.div`
     margin-left: 10px;
@@ -21,6 +21,7 @@ const StyledCard = styled.div`
     box-shadow: 0px 2px 50px 3px rgba(71,0,0,1);
 `;
 
+
 const StyledCardBody = styled.div`
     :hover {  
     cursor: pointer;
@@ -30,14 +31,13 @@ const StyledCardBody = styled.div`
 class HCard extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-        };
+        this.state = {};
     }
 
 
     goToSubPage = () => {
         this.props.history.push(window.location.pathname +
-           `/${this.props.category.name}` +
+            `/${this.props.category.name}` +
             `/${this.props.urlCategory}`);
     };
 
@@ -57,8 +57,6 @@ class HCard extends React.Component {
             </StyledCardContainer>
         );
     }
-
-
 };
 
 export default withRouter(HCard);

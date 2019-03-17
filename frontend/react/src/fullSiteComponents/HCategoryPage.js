@@ -12,6 +12,7 @@ class HCategoryPage extends React.Component {
         };
     }
 
+
     componentDidMount() {
         fetch(this.state.endpoint)
             .then(data => data.json())

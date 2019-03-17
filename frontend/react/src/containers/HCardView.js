@@ -10,7 +10,6 @@ class HCardView extends React.Component {
             itemsInRow: props.itemsInRow,
             bootstrapGridValue: this.calculateBootstrapGridValue(),
             endpoint: props.endpoint,
-            nextPageAddress: this.calculateNextPageAddress(),
             host: "",
             categories: []
         };
@@ -20,7 +19,7 @@ class HCardView extends React.Component {
     componentDidMount() {
         fetch(this.state.endpoint)
             .then(data => {
-                    var parser = document.createElement('a');
+                    let parser = document.createElement('parser');
                     parser.href = data.url;
                     this.setState({host: parser.origin});
                     return data;
@@ -74,13 +73,7 @@ class HCardView extends React.Component {
         }
 
         return container;
-    }
-
-
-    calculateNextPageAddress = () => {
-        let urlArray = this.props.endpoint.split('/');
-        return urlArray[urlArray.length - 2] + urlArray[urlArray.length - 1];
-    }
+    };
 
 
     render() {
