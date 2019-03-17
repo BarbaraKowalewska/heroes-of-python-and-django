@@ -2,11 +2,15 @@ import React from 'react';
 
 import HCard from "../components/HCard";
 
-class HCategoryListView extends React.Component {
+
+class HCardView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            endpoint: "http://127.0.0.1:8000/api/forum",
+            itemsInRow: props.itemsInRow,
+            bootstrapGridValue: this.calculateBootstrapGridValue(),
+            endpoint: props.endpoint,
+            nextPageAddress: this.calculateNextPageAddress(),
             host: "",
             categories: []
         };
@@ -27,12 +31,18 @@ class HCategoryListView extends React.Component {
     }
 
 
+    calculateBootstrapGridValue = () => {
+        return 12 / this.props.itemsInRow;
+    };
+
+
     createGrid = () => {
+        this.calculateBootstrapGridValue();
+
         let items = this.state.categories;
         let itemsQuantity = items.length;
-        let itemsInRow = 4;
-        let rowsQuantity = Math.floor(itemsQuantity / itemsInRow);
-        let itemsInLastRow = itemsQuantity % itemsInRow;
+        let rowsQuantity = Math.floor(itemsQuantity / this.state.itemsInRow);
+        let itemsInLastRow = itemsQuantity % this.state.itemsInRow;
         let container = [];
 
         if (itemsQuantity === 0) {
@@ -41,8 +51,12 @@ class HCategoryListView extends React.Component {
 
         for (let i = 0; i < rowsQuantity; i++) {
             let row = [];
-            for (let j = 0; j < itemsInRow; j++) {
-                row.push(< HCard host={this.state.host} category={items[j + (itemsInRow * i)]}/>);
+            for (let j = 0; j < this.state.itemsInRow; j++) {
+                row.push(< HCard
+                    urlCategory={this.props.urlCategory}
+                    bootstrapGridValue={this.state.bootstrapGridValue}
+                    host={this.state.host}
+                    category={items[j + (this.state.itemsInRow * i)]}/>);
             }
             container.push(<div className="row">{row}</div>)
         }
@@ -50,13 +64,22 @@ class HCategoryListView extends React.Component {
         if (itemsInLastRow !== 0) {
             let row = [];
             for (let i = 0; i < itemsInLastRow; i++) {
-                row.push(< HCard host={this.state.host}
-                                 category={items[rowsQuantity * itemsInRow + i]}/>);
+                row.push(< HCard
+                    urlCategory={this.props.urlCategory}
+                    bootstrapGridValue={this.state.bootstrapGridValue}
+                    host={this.state.host}
+                    category={items[rowsQuantity * this.state.itemsInRow + i]}/>);
             }
             container.push(<div className="row">{row}</div>)
         }
 
         return container;
+    }
+
+
+    calculateNextPageAddress = () => {
+        let urlArray = this.props.endpoint.split('/');
+        return urlArray[urlArray.length - 2] + urlArray[urlArray.length - 1];
     }
 
 
@@ -69,4 +92,4 @@ class HCategoryListView extends React.Component {
     }
 }
 
-export default HCategoryListView;
+export default HCardView;

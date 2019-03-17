@@ -1,15 +1,14 @@
 import React from "react";
-
-import HJumbotron from "../components/HJumbotron";
 import HCardView from "../containers/HCardView";
 
-class HLandingPage extends React.Component {
+class HCategoryPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            itemsInRow: 4,
+            itemsInRow: 2,
             endpoint: "http://127.0.0.1:8000/api/forum/categories",
-            categories: []
+            categories: [],
+            urlCategory: "topics"
         };
     }
 
@@ -19,14 +18,18 @@ class HLandingPage extends React.Component {
             .then((data) => this.setState({categories: data}))
     }
 
+
     render() {
         return (
-            <div>
-                <HJumbotron/>
-                <HCardView itemsInRow={this.state.itemsInRow} endpoint={this.state.endpoint}/>
+            <div style={{paddingLeft: '20%', paddingRight: '20%'}}>
+                <HCardView
+                    urlCategory = {this.state.urlCategory}
+                    itemsInRow={this.state.itemsInRow}
+                    endpoint={this.state.endpoint}
+                />
             </div>
         );
     }
 }
 
-export default HLandingPage;
+export default HCategoryPage;

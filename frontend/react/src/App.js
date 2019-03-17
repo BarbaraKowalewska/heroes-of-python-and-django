@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 
 import HLayout from './layouts/HLayout';
-import BaseRouter from './routes';
+import BaseRouter from './BaseRouter';
 import {BrowserRouter as Router} from 'react-router-dom';
 
 class App extends Component {

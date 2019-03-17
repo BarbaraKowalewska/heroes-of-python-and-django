@@ -1,19 +1,20 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
-
-import HCategoryListView from './containers/HCategoryListView';
-import HLandingPage from './fullSiteComponents/HLandingPage';
+import {Route} from "react-router-dom";
+import HLandingPage from "./fullSiteComponents/HLandingPage";
+import HCategoryPage from "./fullSiteComponents/HCategoryPage";
 import HCategoryTopicsView from "./containers/HCategoryTopicsView";
+import React from "react";
 
-const BaseRouter = () => (
 
-    <div>
-        <Route exact path='/' component={HLandingPage}/>
-        <Route exact path='/forum' component={HCategoryListView}/>
-        <Route exact path='/forum/:categoryName' component={HCategoryTopicsView}/>
-
-    </div>
-
+const LandingPage = () => (
+    <Route exact path='/' component={HLandingPage}/>
 );
 
-export default BaseRouter;
+const ForumCategoriesPage = () => (
+    <Route exact path='/forum/categories' component={HCategoryPage}/>
+);
+
+const ForumTopicsOfCategoryPage = () => (
+    <Route exact path='/forum/categories/:categoryName/topics' component={HCategoryTopicsView}/>
+);
+
+export {LandingPage, ForumCategoriesPage, ForumTopicsOfCategoryPage}
