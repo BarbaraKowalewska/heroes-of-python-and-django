@@ -19,7 +19,7 @@ class HCardView extends React.Component {
     componentDidMount() {
         fetch(this.state.endpoint)
             .then(data => {
-                    let parser = document.createElement('parser');
+                    let parser = document.createElement('a');
                     parser.href = data.url;
                     this.setState({host: parser.origin});
                     return data;
