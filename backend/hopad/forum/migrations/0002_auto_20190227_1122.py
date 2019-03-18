@@ -12,6 +12,6 @@ class Migration(migrations.Migration):
     operations = [
         migrations.RenameModel(
             old_name='Categories',
-            new_name='Category',
+            new_name='Footer',
         ),
     ]

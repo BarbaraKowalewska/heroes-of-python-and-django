@@ -1,0 +1,20 @@
+#userProfilePic {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+
+.icon {
+    font-size: 24px;
+}
+
+.hoverable:hover, .icon:hover {
+    cursor: pointer;
+    color: red;
+}
+
+
+#userName {
+    margin-bottom: 0px;
+}
+

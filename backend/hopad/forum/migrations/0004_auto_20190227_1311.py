@@ -22,19 +22,19 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='Topic',
+            name='CategoryTopic',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=50)),
                 ('creation_date', models.DateTimeField(default=django.utils.timezone.now)),
                 ('content', models.TextField()),
                 ('pinned', models.BooleanField()),
-                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='forum.Category')),
+                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='forum.Footer')),
             ],
         ),
         migrations.AddField(
             model_name='post',
             name='topic',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='forum.Topic'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='forum.CategoryTopic'),
         ),
     ]
