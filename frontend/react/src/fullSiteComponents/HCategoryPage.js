@@ -5,7 +5,7 @@ class HCategoryPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            itemsInRow: 2,
+            itemsInRow: 3,
             endpoint: "http://127.0.0.1:8000/api/forum/categories",
             cards: [],
             urlCategory: "topics"
@@ -27,7 +27,7 @@ class HCategoryPage extends React.Component {
         return (
             <div style={{paddingLeft: '20%', paddingRight: '20%'}}>
                 <HCardView
-                    urlCategory = {this.state.urlCategory}
+                    urlCategory={this.state.urlCategory}
                     itemsInRow={this.state.itemsInRow}
                     endpoint={this.state.endpoint}
                     cards={this.state.cards}
