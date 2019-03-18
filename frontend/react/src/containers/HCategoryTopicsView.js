@@ -27,8 +27,10 @@ class HCategoryTopicsView extends React.Component {
             return;
         }
 
-        topics.map((topic) => {
-            return listOfTopics.push(<HCategoryTopic topic={topic}/>)
+        topics.map((topic, index) => {
+            return listOfTopics.push(<HCategoryTopic
+                topic={topic}
+                key={index}/>)
         });
 
         return listOfTopics
