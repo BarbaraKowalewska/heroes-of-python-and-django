@@ -10,7 +10,7 @@ class HCardView extends React.Component {
             itemsInRow: props.itemsInRow,
             bootstrapGridValue: this.calculateBootstrapGridValue(),
             endpoint: props.endpoint,
-            host: "https://localhost:8000",
+            host: "http://localhost:8000",
             cards: props.cards
         };
     }
@@ -25,37 +25,24 @@ class HCardView extends React.Component {
         this.calculateBootstrapGridValue();
 
         let items = this.state.cards;
+        let rowSize = this.state.itemsInRow;
         let itemsQuantity = items.length;
-        let rowsQuantity = Math.floor(itemsQuantity / this.state.itemsInRow);
-        let itemsInLastRow = itemsQuantity % this.state.itemsInRow;
+
         let container = [];
+        let row = [];
 
-        if (itemsQuantity === 0) {
-            return;
-        }
+        for (let i = 0; i < itemsQuantity; i++) {
 
-        for (let i = 0; i < rowsQuantity; i++) {
-            let row = [];
-            for (let j = 0; j < this.state.itemsInRow; j++) {
-                row.push(< HCard
-                    urlCategory={this.props.urlCategory}
-                    bootstrapGridValue={this.state.bootstrapGridValue}
-                    host={this.state.host}
-                    category={items[j + (this.state.itemsInRow * i)]}/>);
+            row.push(< HCard
+                urlCategory={this.props.urlCategory}
+                bootstrapGridValue={this.state.bootstrapGridValue}
+                host={this.state.host}
+                category={items[i]}/>);
+
+            if (i % rowSize === rowSize - 1 || i+1 === itemsQuantity) {
+                container.push(<div className="row">{row}</div>);
+                row = [];
             }
-            container.push(<div className="row">{row}</div>)
-        }
-
-        if (itemsInLastRow !== 0) {
-            let row = [];
-            for (let i = 0; i < itemsInLastRow; i++) {
-                row.push(< HCard
-                    urlCategory={this.props.urlCategory}
-                    bootstrapGridValue={this.state.bootstrapGridValue}
-                    host={this.state.host}
-                    category={items[rowsQuantity * this.state.itemsInRow + i]}/>);
-            }
-            container.push(<div className="row">{row}</div>)
         }
 
         return container;
