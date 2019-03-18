@@ -10,23 +10,9 @@ class HCardView extends React.Component {
             itemsInRow: props.itemsInRow,
             bootstrapGridValue: this.calculateBootstrapGridValue(),
             endpoint: props.endpoint,
-            host: "",
-            categories: []
+            host: "https://localhost:8000",
+            cards: props.cards
         };
-    }
-
-
-    componentDidMount() {
-        fetch(this.state.endpoint)
-            .then(data => {
-                    let parser = document.createElement('a');
-                    parser.href = data.url;
-                    this.setState({host: parser.origin});
-                    return data;
-                }
-            )
-            .then(data => data.json())
-            .then((data) => this.setState({categories: data}))
     }
 
 
@@ -38,7 +24,7 @@ class HCardView extends React.Component {
     createGrid = () => {
         this.calculateBootstrapGridValue();
 
-        let items = this.state.categories;
+        let items = this.state.cards;
         let itemsQuantity = items.length;
         let rowsQuantity = Math.floor(itemsQuantity / this.state.itemsInRow);
         let itemsInLastRow = itemsQuantity % this.state.itemsInRow;
