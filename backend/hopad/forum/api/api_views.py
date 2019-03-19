@@ -1,5 +1,6 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework import status
 
 from .serializers import CategorySerializer, TopicSerializer, PostSerializer
 from ..models import Category, Topic, Post
@@ -25,3 +26,31 @@ class ApiPostsOfCertainTopic(APIView):
         posts = Post.objects.filter(topic=self.kwargs['topic_id'])
         serializer = PostSerializer(posts, many=True)
         return Response(serializer.data)
+
+
+class ApiCertainTopic(APIView):
+    def get(self, request, *args, **kwargs):
+        topic = Topic.objects.get(pk=self.kwargs['topic_id'])
+        serializer = TopicSerializer(topic)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = TopicSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, pk, format=None):
+        topic = Topic.objects.get(pk=self.kwargs['topic_id'])
+        serializer = TopicSerializer(topic, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        topic = Topic.objects.get(pk=self.kwargs['topic_id'])
+        topic.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
