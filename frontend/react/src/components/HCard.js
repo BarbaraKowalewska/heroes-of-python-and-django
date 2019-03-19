@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import {withRouter} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 
 const StyledCardContainer = styled.div`
@@ -34,22 +35,17 @@ class HCard extends React.Component {
         this.state = {};
     }
 
-
-    goToSubPage = () => {
-        this.props.history.push(window.location.pathname +
-            `/${this.props.category.name}` +
-            `/${this.props.urlCategory}`);
-    };
-
-
     render() {
         return (
             <StyledCardContainer className={`col-md-${this.props.bootstrapGridValue} my-4 border-secondary`}>
                 <StyledCard className="card h-100 rounded">
                     <img className="card-img-top" src={this.props.host + this.props.category.image}
                          alt=""/>
-                    <StyledCardBody onClick={this.goToSubPage} className="card-body">
+                    <StyledCardBody className="card-body">
                         <h3 className="card-title text-center">{this.props.category.name}</h3>
+
+                        <Link to={`${this.props.match.url}/${this.props.category.name}/${this.props.urlCategory}`}>LIIIINKNKNKNKNK</Link>
+
                         <hr/>
                         <p className="card-text text-wrap text-secondary center font-italic"> {this.props.category.summary} </p>
                     </StyledCardBody>
