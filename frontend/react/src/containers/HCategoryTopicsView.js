@@ -13,7 +13,7 @@ class HCategoryTopicsView extends React.Component {
 
     componentDidMount() {
         const categoryName = this.props.match.params.categoryName;
-        fetch(`http://127.0.0.1:8000/api/forum/categories/${categoryName}/`)
+        fetch(`http://127.0.0.1:8000/api/forum/categories/${categoryName}/topics`)
             .then(data => data.json())
             .then((data) => this.setState({topics: data}))
     }
