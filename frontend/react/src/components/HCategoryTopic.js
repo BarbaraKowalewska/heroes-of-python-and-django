@@ -18,6 +18,11 @@ class HCategoryTopic extends React.Component {
     }
 
 
+    deleteTopic = (e) => {
+        console.log(e);
+    }
+
+
     render() {
 
         const {
@@ -50,8 +55,8 @@ class HCategoryTopic extends React.Component {
                             <FontAwesomeIcon className="icon" icon={faChevronDown}/>
                         </StyledChevronIconContainer>
                         <h2 className="d-inline hoverable"> {title} </h2>
-
                     </header>
+
                     <div className="ml-5 lead"> {content} </div>
 
                     <footer>
@@ -64,7 +69,8 @@ class HCategoryTopic extends React.Component {
 
             <div className="p-1 my-5 col-md-2 box">
                 <div className="row">
-                    <FontAwesomeIcon className="m-2 icon" icon={faTrashAlt}/>
+                    <FontAwesomeIcon onClick={(e) => this.deleteTopic(this.props.topic.id, e)} className="m-2 icon"
+                                     icon={faTrashAlt}/>
                     <FontAwesomeIcon className="m-2 icon" icon={faEdit}/>
                 </div>
 
@@ -72,7 +78,6 @@ class HCategoryTopic extends React.Component {
                     <FontAwesomeIcon className="m-2 icon" icon={faStar}/>
                     <FontAwesomeIcon className="m-2 icon" icon={faMapPin}/>
                 </div>
-
             </div>
         </div>);
     }
