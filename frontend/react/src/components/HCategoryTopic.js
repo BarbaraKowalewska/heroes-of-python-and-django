@@ -11,16 +11,34 @@ const StyledChevronIconContainer = styled.div`
 `;
 
 
-const CategoryTopic = (props) => {
-    return (
-        <div className="row">
+class HCategoryTopic extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+
+
+    render() {
+
+        const {
+            topic: {
+                account,
+                user,
+                title,
+                content,
+                post_count,
+                creation_date
+            }
+        } = this.props;
+
+        return (<div className="row">
             <div className="col-md-2 box">
                 <aside>
-                    <img id="userProfilePic" src={'http://localhost:8000' + props.topic.account.image}
+                    <img id="userProfilePic" src={'http://localhost:8000' + account.image}
                          className="img-responsive mr-3 mt-3 rounded-circle"
                          alt="test"/>
-                    <h4 id="userName" className="mt-2 ml-2 hoverable"> {props.topic.user.username} </h4>
-                    <small className="ml-2"> {props.topic.user.email} </small>
+                    <h4 id="userName" className="mt-2 ml-2 hoverable"> {user.username} </h4>
+                    <small className="ml-2"> {user.email} </small>
                 </aside>
             </div>
 
@@ -31,15 +49,15 @@ const CategoryTopic = (props) => {
                             <FontAwesomeIcon className="d-block icon" icon={faChevronUp}/>
                             <FontAwesomeIcon className="icon" icon={faChevronDown}/>
                         </StyledChevronIconContainer>
-                        <h2 className="d-inline hoverable"> {props.topic.title} </h2>
+                        <h2 className="d-inline hoverable"> {title} </h2>
 
                     </header>
-                    <div className="ml-5 lead"> {props.topic.content} </div>
+                    <div className="ml-5 lead"> {content} </div>
 
                     <footer>
                         <hr/>
-                        <small> Posts in this thread: {props.topic.post_count}</small>
-                        <small>, {props.topic.creation_date} </small>
+                        <small> Posts in this thread: {post_count}</small>
+                        <small>, {creation_date} </small>
                     </footer>
                 </article>
             </div>
@@ -56,10 +74,9 @@ const CategoryTopic = (props) => {
                 </div>
 
             </div>
-        </div>
-
-
-    );
+        </div>);
+    }
 }
 
-export default CategoryTopic;
+
+export default HCategoryTopic;
