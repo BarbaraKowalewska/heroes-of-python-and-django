@@ -3,6 +3,8 @@ import './HCategoryTopic.css'
 import styled from 'styled-components'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faChevronDown, faChevronUp, faEdit, faMapPin, faStar, faTrashAlt} from '@fortawesome/free-solid-svg-icons'
+import {withRouter} from "react-router-dom";
+
 
 const StyledChevronIconContainer = styled.div`
     display: inline-table;
@@ -14,25 +16,38 @@ const StyledChevronIconContainer = styled.div`
 class HCategoryTopic extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            host: "http://localhost:8000/",
+        };
     }
 
 
-    deleteTopic = (e) => {
-        console.log(e);
-    }
+    deleteTopic = (id, matchUrl) => {
+        let status = fetch(`${this.state.host}api${matchUrl}/${id}/`, {
+            method: 'delete'
+        }).then(response => response.status)
+            .then(status => {
+                if (status === 204) {
+                    this.props.loadTopics()
+                }
+            });
+        return status;
+    };
 
 
     render() {
 
         const {
+            match,
             topic: {
+                id,
                 account,
                 user,
+                category,
                 title,
                 content,
                 post_count,
-                creation_date
+                creation_date,
             }
         } = this.props;
 
@@ -69,7 +84,7 @@ class HCategoryTopic extends React.Component {
 
             <div className="p-1 my-5 col-md-2 box">
                 <div className="row">
-                    <FontAwesomeIcon onClick={(e) => this.deleteTopic(this.props.topic.id, e)} className="m-2 icon"
+                    <FontAwesomeIcon onClick={(e) => this.deleteTopic(id, match.url, category)} className="m-2 icon"
                                      icon={faTrashAlt}/>
                     <FontAwesomeIcon className="m-2 icon" icon={faEdit}/>
                 </div>
@@ -84,4 +99,4 @@ class HCategoryTopic extends React.Component {
 }
 
 
-export default HCategoryTopic;
+export default withRouter(HCategoryTopic);

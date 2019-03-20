@@ -12,11 +12,16 @@ class HCategoryTopicsView extends React.Component {
     }
 
     componentDidMount() {
+        this.loadTopics();
+    }
+
+
+    loadTopics = () => {
         const categoryName = this.props.match.params.categoryName;
         fetch(`http://127.0.0.1:8000/api/forum/categories/${categoryName}/topics`)
             .then(data => data.json())
             .then((data) => this.setState({topics: data}))
-    }
+    };
 
 
     createListOfTopics() {
@@ -29,6 +34,7 @@ class HCategoryTopicsView extends React.Component {
 
         topics.map((topic, index) => {
             return listOfTopics.push(<HCategoryTopic
+                loadTopics={this.loadTopics}
                 topic={topic}
                 key={index}/>)
         });
