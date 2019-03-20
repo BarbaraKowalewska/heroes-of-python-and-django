@@ -13,18 +13,18 @@ class ApiCategories(APIView):
         return Response(serializer.data)
 
 
+class ApiCertainCategory(APIView):
+    def get(self, request, *args, **kwargs):
+        category = Category.objects.get(name=self.kwargs['category_name'])
+        serializer = CategorySerializer(category)
+        return Response(serializer.data)
+
+
 class ApiTopicsOfCertainCategory(APIView):
     def get(self, request, *args, **kwargs):
         category_id = Category.objects.get(name=self.kwargs['category_name']).id
         topics = Topic.objects.filter(category=category_id)
         serializer = TopicSerializer(topics, many=True)
-        return Response(serializer.data)
-
-
-class ApiPostsOfCertainTopic(APIView):
-    def get(self, request, *args, **kwargs):
-        posts = Post.objects.filter(topic=self.kwargs['topic_id'])
-        serializer = PostSerializer(posts, many=True)
         return Response(serializer.data)
 
 
@@ -54,3 +54,16 @@ class ApiCertainTopic(APIView):
         topic.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+
+class ApiPostsOfCertainTopic(APIView):
+    def get(self, request, *args, **kwargs):
+        posts = Post.objects.filter(topic=self.kwargs['topic_id'])
+        serializer = PostSerializer(posts, many=True)
+        return Response(serializer.data)
+
+
+class ApiCertainPost(APIView):
+    def get(self, request, *args, **kwargs):
+        post = Post.objects.get(pk=self.kwargs['post_id'])
+        serializer = PostSerializer(post)
+        return Response(serializer.data)
