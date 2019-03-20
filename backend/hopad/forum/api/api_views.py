@@ -49,7 +49,7 @@ class ApiCertainTopic(APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, pk, format=None):
+    def delete(self, request, **kwargs):
         topic = Topic.objects.get(pk=self.kwargs['topic_id'])
         topic.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

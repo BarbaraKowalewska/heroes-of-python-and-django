@@ -7,7 +7,7 @@ app_name = 'api_forum'
 urlpatterns = [
     path('categories/', api_views.ApiCategories.as_view(), name='api_categories'),
     path('categories/<str:category_name>/', api_views.ApiCertainCategory.as_view(), name='api_certain_category'),
-    path('categories/<str:category_name>/topics', api_views.ApiTopicsOfCertainCategory.as_view(),
+    path('categories/<str:category_name>/topics/', api_views.ApiTopicsOfCertainCategory.as_view(),
          name='api_topics_of_certain_category'),
     path('categories/<str:category_name>/topics/<int:topic_id>/', api_views.ApiCertainTopic.as_view(),
          name='api_certain_topic'),

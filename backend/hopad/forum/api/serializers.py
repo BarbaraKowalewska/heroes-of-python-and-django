@@ -32,6 +32,9 @@ class TopicSerializer(serializers.ModelSerializer):
 
     def to_representation(self, obj):
         serialized_data = super(TopicSerializer, self).to_representation(obj)
+
+        serialized_data['category'] = Category.objects.get(pk=serialized_data.get('category')).name
+
         user_id = serialized_data.get('user')
         user = User.objects.get(pk=user_id)
         from accounts.api.serializers import UserBasicInfoSerializer
