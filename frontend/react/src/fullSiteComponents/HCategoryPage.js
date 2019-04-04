@@ -6,7 +6,7 @@ class HCategoryPage extends React.Component {
         super(props);
         this.state = {
             itemsInRow: 3,
-            endpoint: "http://127.0.0.1:8000/api/forum/categories",
+            endpoint: process.env.REACT_APP_API_FORUM_CATEGORIES,
             cards: [],
             urlCategory: "topics"
         };

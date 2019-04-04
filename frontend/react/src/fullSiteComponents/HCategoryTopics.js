@@ -2,7 +2,7 @@ import React from 'react';
 
 import HCategoryTopic from '../components/HCategoryTopic';
 
-class HCategoryTopicsView extends React.Component {
+class HCategoryTopics extends React.Component {
 
     constructor(props) {
         super(props);
@@ -52,4 +52,4 @@ class HCategoryTopicsView extends React.Component {
     }
 }
 
-export default HCategoryTopicsView;
+export default HCategoryTopics;

@@ -9,7 +9,6 @@ class HCardView extends React.Component {
         this.state = {
             itemsInRow: props.itemsInRow,
             bootstrapGridValue: this.calculateBootstrapGridValue(),
-            host: process.env.REACT_APP_API_URL,
             cards: props.cards
         };
     }
@@ -33,7 +32,6 @@ class HCardView extends React.Component {
             row.push(<HCard
                 urlCategory={this.props.urlCategory}
                 bootstrapGridValue={this.state.bootstrapGridValue}
-                host={this.state.host}
                 category={items[i]}
             />);
 

@@ -1,7 +1,7 @@
 import {Route} from "react-router-dom";
 import HLandingPage from "./fullSiteComponents/HLandingPage";
 import HCategoryPage from "./fullSiteComponents/HCategoryPage";
-import HCategoryTopicsView from "./containers/HCategoryTopicsView";
+import HCategoryTopics from "./fullSiteComponents/HCategoryTopics";
 import React from "react";
 
 
@@ -14,7 +14,7 @@ const ForumCategoriesPage = () => (
 );
 
 const ForumTopicsOfCategoryPage = () => (
-    <Route exact path='/forum/categories/:categoryName/topics' component={HCategoryTopicsView}/>
+    <Route exact path='/forum/categories/:categoryName/topics' component={HCategoryTopics}/>
 );
 
 export {LandingPage, ForumCategoriesPage, ForumTopicsOfCategoryPage}

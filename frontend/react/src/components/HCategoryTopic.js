@@ -17,13 +17,19 @@ class HCategoryTopic extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            host: "http://localhost:8000/",
+            host: process.env.REACT_APP_API_HOST,
         };
     }
 
-
+    /**
+     * Sends a delete request with certain topic and after that loads updated topics
+     * @param  {id} id of topic to be removed
+     * @param  {matchUrl} url path from the current location
+     * in this case '/forum/categories/Forum/topics'
+     */
     deleteTopic = (id, matchUrl) => {
-        let status = fetch(`${this.state.host}api${matchUrl}/${id}/`, {
+        let endpoint = new URL(`/api${matchUrl}/${id}`, this.state.host);
+        let status = fetch(endpoint, {
             method: 'delete'
         }).then(response => response.status)
             .then(status => {
@@ -43,7 +49,6 @@ class HCategoryTopic extends React.Component {
                 id,
                 account,
                 user,
-                category,
                 title,
                 content,
                 post_count,
@@ -54,7 +59,7 @@ class HCategoryTopic extends React.Component {
         return (<div className="row">
             <div className="col-md-2 box">
                 <aside>
-                    <img id="userProfilePic" src={'http://localhost:8000' + account.image}
+                    <img id="userProfilePic" src={this.state.host + account.image}
                          className="img-responsive mr-3 mt-3 rounded-circle"
                          alt="test"/>
                     <h4 id="userName" className="mt-2 ml-2 hoverable"> {user.username} </h4>
@@ -84,7 +89,7 @@ class HCategoryTopic extends React.Component {
 
             <div className="p-1 my-5 col-md-2 box">
                 <div className="row">
-                    <FontAwesomeIcon onClick={(e) => this.deleteTopic(id, match.url, category)} className="m-2 icon"
+                    <FontAwesomeIcon onClick={(e) => this.deleteTopic(id, match.url)} className="m-2 icon"
                                      icon={faTrashAlt}/>
                     <FontAwesomeIcon className="m-2 icon" icon={faEdit}/>
                 </div>

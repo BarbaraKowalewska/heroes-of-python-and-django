@@ -32,22 +32,40 @@ const StyledCardBody = styled.div`
 class HCard extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            host: process.env.REACT_APP_API_HOST
+        };
     }
 
     render() {
+
+        const {
+            host
+        } = this.state
+
+        const {
+            bootstrapGridValue,
+            match,
+            urlCategory,
+            category: {
+                image,
+                name,
+                summary
+            }
+        } = this.props;
+
         return (
-            <StyledCardContainer className={`col-md-${this.props.bootstrapGridValue} my-4 border-secondary`}>
+            <StyledCardContainer className={`col-md-${bootstrapGridValue} my-4 border-secondary`}>
                 <StyledCard className="card h-100 rounded">
-                    <img className="card-img-top" src={this.props.host + this.props.category.image}
+                    <img className="card-img-top" src={host + image}
                          alt=""/>
                     <StyledCardBody className="card-body">
-                        <h3 className="card-title text-center">{this.props.category.name}</h3>
-
-                        <Link to={`${this.props.match.url}/${this.props.category.name}/${this.props.urlCategory}`}>LIIIINKNKNKNKNK</Link>
-
+                        <h3 className="card-title text-center">{name}</h3>
+                        <Link
+                            to={`${match.url}/${name}/${urlCategory}`}>LIIIINKNKNKNKNK
+                        </Link>
                         <hr/>
-                        <p className="card-text text-wrap text-secondary center font-italic"> {this.props.category.summary} </p>
+                        <p className="card-text text-wrap text-secondary center font-italic"> {summary} </p>
                     </StyledCardBody>
                 </StyledCard>
             </StyledCardContainer>
