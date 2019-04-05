@@ -8,7 +8,7 @@ class HLandingPage extends React.Component {
         super(props);
         this.state = {
             itemsInRow: 4,
-            endpoint: process.env.REACT_APP_API_FORUM_CATEGORIES,
+            endpoint: process.env.REACT_APP_API_LANDING_PAGE,
             cards: []
         };
     }

@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-import {withRouter} from "react-router-dom";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 
 
 const StyledCardContainer = styled.div`
@@ -56,18 +55,25 @@ class HCard extends React.Component {
 
         return (
             <StyledCardContainer className={`col-md-${bootstrapGridValue} my-4 border-secondary`}>
-                <StyledCard className="card h-100 rounded">
-                    <img className="card-img-top" src={host + image}
-                         alt=""/>
-                    <StyledCardBody className="card-body">
-                        <h3 className="card-title text-center">{name}</h3>
-                        <Link
-                            to={`${match.url}/${name}/${urlCategory}`}>LIIIINKNKNKNKNK
-                        </Link>
-                        <hr/>
-                        <p className="card-text text-wrap text-secondary center font-italic"> {summary} </p>
-                    </StyledCardBody>
-                </StyledCard>
+
+                <Link
+                    to={`${match.url.slice(-1) === '/' ? match.url : match.url + '/'}${name}/${urlCategory}/`}>
+
+                    <StyledCard className="card h-100 rounded">
+                        <img className="card-img-top" src={host + image}
+                             alt=""/>
+                        <StyledCardBody className="card-body">
+                            <h3 className="card-title text-center">{name}</h3>
+
+                            <hr/>
+                            <p className="card-text text-wrap text-secondary center font-italic"> {summary} </p>
+                        </StyledCardBody>
+                    </StyledCard>
+
+
+                </Link>
+
+
             </StyledCardContainer>
         );
     }

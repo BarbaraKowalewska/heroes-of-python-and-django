@@ -35,6 +35,7 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'landing_page.apps.LandingPageConfig',
     'accounts.apps.AccountsConfig',
     'forum.apps.ForumConfig',
     'crispy_forms',
