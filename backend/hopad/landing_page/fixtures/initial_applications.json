@@ -1,0 +1,42 @@
+[
+  {
+    "model": "landing_page.application",
+    "pk": 1,
+    "fields": {
+      "name": "Forum",
+      "image": "landing_page/application/Advanced_Tactics.png",
+      "summary": "Forum zrzeszające społeczność Heroes III, dołącz dziś!",
+      "urlCategory": "categories"
+    }
+  },
+  {
+    "model": "landing_page.application",
+    "pk": 2,
+    "fields": {
+      "name": "Gra",
+      "image": "landing_page/application/Expert_Necromancy.png",
+      "summary": "Zagraj w symulację bitwy z Heroes III !",
+      "urlCategory": "servers"
+    }
+  },
+  {
+    "model": "landing_page.application",
+    "pk": 3,
+    "fields": {
+      "name": "Czat",
+      "image": "///",
+      "summary": "Pogadaj z nami na interaktywnym czacie.",
+      "urlCategory": "placeholder"
+    }
+  },
+  {
+    "model": "landing_page.application",
+    "pk": 4,
+    "fields": {
+      "name": "Ranking",
+      "image": "///",
+      "summary": "Poznaj statystyki graczy i zmierz się z najlepszymi!",
+      "urlCategory": "charts"
+    }
+  }
+]
