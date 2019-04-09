@@ -17,7 +17,7 @@ class HCategoryTopics extends React.Component {
 
 
     loadTopics = () => {
-        const categoryName = this.props.match.params.categoryName;
+        const categoryName = this.props.match.params.name;
         fetch(`http://127.0.0.1:8000/api/forum/categories/${categoryName}/topics`)
             .then(data => data.json())
             .then((data) => this.setState({topics: data}))

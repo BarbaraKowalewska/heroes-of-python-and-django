@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import {Link, withRouter} from "react-router-dom";
+import {formatRoute} from "react-router-named-routes";
 
 
 const StyledCardContainer = styled.div`
@@ -40,24 +41,23 @@ class HCard extends React.Component {
 
         const {
             host
-        } = this.state
+        } = this.state;
 
         const {
             bootstrapGridValue,
-            match,
-            urlCategory,
-            category: {
+
+            card: {
                 image,
                 name,
-                summary
+                summary,
+                urlCategory
             }
         } = this.props;
 
         return (
             <StyledCardContainer className={`col-md-${bootstrapGridValue} my-4 border-secondary`}>
 
-                <Link
-                    to={`${match.url.slice(-1) === '/' ? match.url : match.url + '/'}${name}/${urlCategory}/`}>
+                <Link to={formatRoute(this.props.urlPattern, {name: name, appCategory: urlCategory})}>
 
                     <StyledCard className="card h-100 rounded">
                         <img className="card-img-top" src={host + image}
