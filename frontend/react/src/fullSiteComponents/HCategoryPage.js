@@ -1,14 +1,15 @@
 import React from "react";
 import HCardView from "../containers/HCardView";
+import {routes} from "../routes";
 
 class HCategoryPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            itemsInRow: 3,
+            itemsInRow: 4,
             endpoint: process.env.REACT_APP_API_FORUM_CATEGORIES,
             cards: [],
-            urlCategory: "topics"
+
         };
     }
 
@@ -27,9 +28,8 @@ class HCategoryPage extends React.Component {
         return (
             <div style={{paddingLeft: '20%', paddingRight: '20%'}}>
                 <HCardView
-                    urlCategory={this.state.urlCategory}
+                    urlPattern={routes.CATEGORY_PAGE}
                     itemsInRow={this.state.itemsInRow}
-                    endpoint={this.state.endpoint}
                     cards={this.state.cards}
                 />
             </div>

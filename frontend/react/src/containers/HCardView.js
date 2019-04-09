@@ -9,7 +9,8 @@ class HCardView extends React.Component {
         this.state = {
             itemsInRow: props.itemsInRow,
             bootstrapGridValue: this.calculateBootstrapGridValue(),
-            cards: props.cards
+            cards: props.cards,
+            urlPattern: props.urlPattern,
         };
     }
 
@@ -30,9 +31,9 @@ class HCardView extends React.Component {
         for (let i = 0; i < itemsQuantity; i++) {
 
             row.push(<HCard
-                urlCategory={this.props.urlCategory ? this.props.urlCategory : this.state.cards[i].urlCategory}
+                urlPattern={this.props.urlPattern}
                 bootstrapGridValue={this.state.bootstrapGridValue}
-                category={items[i]}
+                card={items[i]}
             />);
 
             if (i % rowSize === rowSize - 1 || i + 1 === itemsQuantity) {

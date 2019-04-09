@@ -2,6 +2,7 @@ import React from "react";
 
 import HJumbotron from "../components/HJumbotron";
 import HCardView from "../containers/HCardView";
+import {routes} from "../routes";
 
 class HLandingPage extends React.Component {
     constructor(props) {
@@ -27,6 +28,7 @@ class HLandingPage extends React.Component {
             <div>
                 <HJumbotron/>
                 <HCardView
+                    urlPattern={routes.APPLICATION_PAGE}
                     itemsInRow={this.state.itemsInRow}
                     cards={this.state.cards}
                 />
