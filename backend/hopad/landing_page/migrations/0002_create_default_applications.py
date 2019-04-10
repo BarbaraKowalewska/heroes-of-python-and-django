@@ -5,7 +5,6 @@ from django.db import migrations
 
 def create_apps(apps, schema_editor):
     Application = apps.get_model('landing_page', 'Application')
-    # db_alias = schema_editor.connection.alias
     Application.objects.bulk_create([
         Application(name="Forum", image="landing_page/application/Advanced_Tactics.png",
                     summary="Forum zrzeszające społeczność Heroes III, dołącz dziś!",
@@ -24,12 +23,10 @@ def create_apps(apps, schema_editor):
 
 def delete_apps(apps, schema_editor):
     Application = apps.get_model('landing_page', 'Application')
-    # db_alias = schema_editor.connection.alias
     Application.objects.all().delete()
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('landing_page', '0001_initial'),
     ]
