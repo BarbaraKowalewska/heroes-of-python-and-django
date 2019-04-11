@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import HLoginForm from "./HLoginForm";
+import HRegisterForm from "./HRegisterForm";
 
 
 const StyledNav = styled.nav`
@@ -31,7 +32,9 @@ class HNavbar extends React.Component {
 
     state = {
         loginFormModal: "loginFormModal",
-        loginFormModalOpen: false
+        loginFormModalOpen: false,
+        registerFormModal: "registerFormModal",
+        registerFormModalOpen: false
     };
 
 
@@ -45,9 +48,15 @@ class HNavbar extends React.Component {
     render() {
         return (
             <StyledNav className="navbar navbar-expand-lg navbar-light">
+
                 <HLoginForm isOpen={this.state.loginFormModalOpen}
                             toggle={this.toggle}
                             loginFormModal={this.state.loginFormModal}/>
+
+                <HRegisterForm isOpen={this.state.registerFormModalOpen}
+                               toggle={this.toggle}
+                               loginFormModal={this.state.registerFormModal}/>
+
                 <StyledNavText href="#">Heroes of Python & Django</StyledNavText>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,15 +67,18 @@ class HNavbar extends React.Component {
                     </ul>
 
                     <ul className="navbar-nav">
+
                         <li className="nav-item">
-                            {/*<StyledNavText href="#" data-toggle="modal" data-target="#modalLoginForm">*/}
                             <StyledNavText href="#" onClick={(e) => this.toggle(this.state.loginFormModal)}>
                                 Login
                             </StyledNavText>
                         </li>
+
                         <li className="nav-item">
-                            <StyledNavText href="#">Register</StyledNavText>
+                            <StyledNavText href="#"
+                                           onClick={(e) => this.toggle(this.state.registerFormModal)}>Register</StyledNavText>
                         </li>
+
                         <li className="nav-item dropdown">
                             <StyledNavText className="dropdown-toggle" href="http://example.com"
                                            id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"

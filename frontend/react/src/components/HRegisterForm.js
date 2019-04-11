@@ -1,7 +1,7 @@
 import React from "react";
 import {MDBBtn, MDBInput, MDBModal} from 'mdbreact';
 
-class HLoginForm extends React.Component {
+class HRegisterForm extends React.Component {
 
     constructor(props) {
         super(props);
@@ -17,7 +17,7 @@ class HLoginForm extends React.Component {
 
             <MDBModal toggle={this.callToggleFromChild} isOpen={this.props.isOpen} centered>
                 <div onClick={(e) => this.callToggleFromChild()} className="modal-header text-center">
-                    <h4 className="modal-title w-100 font-weight-bold">Log in</h4>
+                    <h4 className="modal-title w-100 font-weight-bold"> Register </h4>
                     <button type="button" className="close" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -26,7 +26,17 @@ class HLoginForm extends React.Component {
                 <div className="modal-body mx-3">
                     <div className="grey-text">
                         <MDBInput
-                            label="Type your email"
+                            label="Your name"
+                            icon="user"
+                            group
+                            type="text"
+                            validate
+                            error="wrong"
+                            success="right"
+                        />
+
+                        <MDBInput
+                            label="Your email"
                             icon="envelope"
                             group
                             type="email"
@@ -36,7 +46,17 @@ class HLoginForm extends React.Component {
                         />
 
                         <MDBInput
-                            label="Type your password"
+                            label="Confirm your email"
+                            icon="exclamation-triangle"
+                            group
+                            type="text"
+                            validate
+                            error="wrong"
+                            success="right"
+                        />
+
+                        <MDBInput
+                            label="Your password"
                             icon="lock"
                             group
                             type="password"
@@ -46,11 +66,11 @@ class HLoginForm extends React.Component {
                 </div>
 
                 <div style={{display: 'grid'}} className="modal-footer justify-content-center">
-                    <MDBBtn className="">Login</MDBBtn>
+                    <MDBBtn className="">Register</MDBBtn>
                     <p className="text-muted small mb-0">
-                        Don't have an account?
+                        Already have an account?
                         <a href="#!" className="dark-grey-text font-weight-bold ml-1">
-                            Sign up
+                            Log In
                         </a>
                     </p>
                 </div>
@@ -59,4 +79,4 @@ class HLoginForm extends React.Component {
     }
 }
 
-export default HLoginForm;
+export default HRegisterForm;
