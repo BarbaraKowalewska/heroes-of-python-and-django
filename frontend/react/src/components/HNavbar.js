@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
+import HLoginForm from "./HLoginForm";
 
 
 const StyledNav = styled.nav`
@@ -27,9 +28,22 @@ const StyledNavText = styled.a`
 
 
 class HNavbar extends React.Component {
+
+    state = {
+        loginFormModal: false
+    };
+
+    toggle = name => () => {
+        this.setState({
+            [name]: !this.state[name]
+        });
+    };
+
+
     render() {
         return (
             <StyledNav className="navbar navbar-expand-lg navbar-light">
+                <HLoginForm/>
                 <StyledNavText href="#">Heroes of Python & Django</StyledNavText>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,7 +55,9 @@ class HNavbar extends React.Component {
 
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <StyledNavText href="#">Login</StyledNavText>
+                            <StyledNavText href="#" data-toggle="modal" data-target="#modalLoginForm">
+                                Login
+                            </StyledNavText>
                         </li>
                         <li className="nav-item">
                             <StyledNavText href="#">Register</StyledNavText>
@@ -60,7 +76,9 @@ class HNavbar extends React.Component {
                     </ul>
                 </div>
             </StyledNav>
-        );
+
+        )
+            ;
     }
 }
 
