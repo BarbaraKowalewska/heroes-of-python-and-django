@@ -8,8 +8,13 @@ class HLoginForm extends React.Component {
         this.callToggleFromChild = this.callToggleFromChild.bind(this);
     }
 
-    callToggleFromChild() {
+    callToggleFromChild(){
         this.props.toggle(this.props.loginFormModal);
+    }
+
+    closeAndLoadRegister(){
+        this.callToggleFromChild();
+        this.props.toggle(this.props.registerFormModal);
     }
 
     render() {
@@ -49,8 +54,8 @@ class HLoginForm extends React.Component {
                     <MDBBtn className="">Login</MDBBtn>
                     <p className="text-muted small mb-0">
                         Don't have an account?
-                        <a href="#!" className="dark-grey-text font-weight-bold ml-1">
-                            Sign up
+                        <a href="#!" onClick={(e) => this.closeAndLoadRegister()} className="dark-grey-text font-weight-bold ml-1">
+                            Register
                         </a>
                     </p>
                 </div>

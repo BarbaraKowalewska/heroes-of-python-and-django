@@ -51,11 +51,13 @@ class HNavbar extends React.Component {
 
                 <HLoginForm isOpen={this.state.loginFormModalOpen}
                             toggle={this.toggle}
-                            loginFormModal={this.state.loginFormModal}/>
+                            loginFormModal={this.state.loginFormModal}
+                            registerFormModal={this.state.registerFormModal}/>
 
                 <HRegisterForm isOpen={this.state.registerFormModalOpen}
                                toggle={this.toggle}
-                               loginFormModal={this.state.registerFormModal}/>
+                               registerFormModal={this.state.registerFormModal}
+                               loginFormModal={this.state.loginFormModal}/>
 
                 <StyledNavText href="#">Heroes of Python & Django</StyledNavText>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
