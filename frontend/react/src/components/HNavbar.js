@@ -30,12 +30,14 @@ const StyledNavText = styled.a`
 class HNavbar extends React.Component {
 
     state = {
-        loginFormModal: false
+        loginFormModal: "loginFormModal",
+        loginFormModalOpen: false
     };
 
-    toggle = name => () => {
+
+    toggle = (name) => {
         this.setState({
-            [name]: !this.state[name]
+            [name + "Open"]: !this.state[name + "Open"]
         });
     };
 
@@ -43,7 +45,9 @@ class HNavbar extends React.Component {
     render() {
         return (
             <StyledNav className="navbar navbar-expand-lg navbar-light">
-                <HLoginForm/>
+                <HLoginForm isOpen={this.state.loginFormModalOpen}
+                            toggle={this.toggle}
+                            loginFormModal={this.state.loginFormModal}/>
                 <StyledNavText href="#">Heroes of Python & Django</StyledNavText>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,7 +59,8 @@ class HNavbar extends React.Component {
 
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <StyledNavText href="#" data-toggle="modal" data-target="#modalLoginForm">
+                            {/*<StyledNavText href="#" data-toggle="modal" data-target="#modalLoginForm">*/}
+                            <StyledNavText href="#" onClick={(e) => this.toggle(this.state.loginFormModal)}>
                                 Login
                             </StyledNavText>
                         </li>
@@ -76,9 +81,7 @@ class HNavbar extends React.Component {
                     </ul>
                 </div>
             </StyledNav>
-
-        )
-            ;
+        );
     }
 }
 
