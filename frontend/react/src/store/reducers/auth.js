@@ -1,6 +1,5 @@
 import * as actionTypes  from '../actions/actionTypes';
 import {updateObject} from "../utility";
-import {authSuccess} from "../actions/auth";
 
 const initialState = {
     token: null,
@@ -29,6 +28,7 @@ const authFail = (state, action) => {
         loading: false
     });
 };
+
 
 const authLogout = (state, action) => {
     return updateObject(state, {
