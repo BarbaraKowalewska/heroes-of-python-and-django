@@ -15,14 +15,14 @@ const StyledNav = styled.nav`
 
 
 const StyledNavText = styled.a`
-    color: whitesmoke;
+    color: whitesmoke !important;
     font-size: 24px;
     padding: 0 0 0 0;
     margin: auto;
     margin-left: 10px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       :hover {
-    color: red;
+    color: red !important;
     cursor: pointer;
     text-decoration: none;
 `;
@@ -71,7 +71,7 @@ class HNavbar extends React.Component {
                     <ul className="navbar-nav">
 
                         <li className="nav-item">
-                            <StyledNavText href="#" onClick={(e) => this.toggle(this.state.loginFormModal)}>
+                            <StyledNavText onClick={(e) => this.toggle(this.state.loginFormModal)}>
                                 Login
                             </StyledNavText>
                         </li>

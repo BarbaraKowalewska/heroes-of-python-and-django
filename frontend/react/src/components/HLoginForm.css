@@ -1,0 +1,8 @@
+.navbar form .md-form input {
+    margin-left: 40px !important;
+    margin-bottom: 40px !important;
+}
+
+.navbar.navbar-light form .md-form input{
+    border-bottom: 1px solid #ced4da !important;
+}
