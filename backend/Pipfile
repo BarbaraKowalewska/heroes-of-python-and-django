@@ -7,12 +7,12 @@ verify_ssl = true
 
 [packages]
 django = "*"
-psycopg2 = "*"
-psycopg2-binary = "*"
 pillow = "*"
 django-crispy-forms = "*"
 djangorestframework = "*"
 django-cors-headers = "*"
+django-rest-auth = "*"
+psycopg2-binary = "*"
 
 [requires]
 python_version = "3.7"
