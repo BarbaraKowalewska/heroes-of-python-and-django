@@ -21,7 +21,7 @@ export const authFail = error => {
 };
 
 export const logout = () => {
-    localStorage.removeItem('user');
+    localStorage.removeItem('token');
     localStorage.removeItem('expirationDate');
     return {
         type: actionTypes.AUTH_LOGOUT
@@ -36,7 +36,7 @@ export const checkAuthTimeout = expirationTime => {
     }
 };
 
-export const authLogin = (username, password) => {
+export const authLogin = (email, password, closeModal) => {
     return dispatch => {
         dispatch(authStart());
         (async () => {
@@ -49,18 +49,24 @@ export const authLogin = (username, password) => {
                         },
                         body: JSON.stringify(
                             {
-                                username: username,
+                                email: email,
                                 password: password
                             })
                     }
                 );
-                const content = await response.json();
-                const token = content.data.key;
-                const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
-                localStorage.setItem('token', token);
-                localStorage.setItem('expirationDate', expirationDate);
-                dispatch(authSuccess(token));
-                dispatch(checkAuthTimeout(3600));
+                if (response.ok) {
+                    const content = await response.json();
+                    const token = await content.key;
+                    const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
+                    localStorage.setItem('token', token);
+                    localStorage.setItem('expirationDate', expirationDate);
+                    dispatch(authSuccess(token));
+                    dispatch(checkAuthTimeout(3600));
+                    closeModal();
+                } else {
+                    const content = await response.json();
+                    dispatch(authFail(content.non_field_errors))
+                }
             } catch (err) {
                 dispatch(authFail(err.message))
             }

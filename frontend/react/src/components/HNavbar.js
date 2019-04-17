@@ -2,6 +2,8 @@ import React from 'react';
 import styled from "styled-components";
 import HLoginForm from "./HLoginForm";
 import HRegisterForm from "./HRegisterForm";
+import { connect } from 'react-redux';
+import * as actions from '../store/actions/auth';
 
 
 const StyledNav = styled.nav`
@@ -69,17 +71,31 @@ class HNavbar extends React.Component {
                     </ul>
 
                     <ul className="navbar-nav">
+                        {
 
-                        <li className="nav-item">
+                            this.props.isAuthenticated ?
+
+                                <li className="nav-item" onClick={this.props.logout}>
+                                    <StyledNavText>
+                                        Logout
+                                    </StyledNavText>
+                                </li>
+
+                                :
+                                <span>
+                            <li className="nav-item d-inline">
                             <StyledNavText onClick={(e) => this.toggle(this.state.loginFormModal)}>
-                                Login
+                            Login
                             </StyledNavText>
-                        </li>
+                            </li>
 
-                        <li className="nav-item">
+                            <li className="nav-item d-inline">
                             <StyledNavText href="#"
                                            onClick={(e) => this.toggle(this.state.registerFormModal)}>Register</StyledNavText>
-                        </li>
+                            </li>
+                            </span>
+                        }
+
 
                         <li className="nav-item dropdown">
                             <StyledNavText className="dropdown-toggle" href="http://example.com"
@@ -99,4 +115,10 @@ class HNavbar extends React.Component {
     }
 }
 
-export default HNavbar
+const mapDispatchToProps = dispatch => {
+    return {
+        logout: () => dispatch(actions.logout())
+    }
+}
+
+export default (connect(null, mapDispatchToProps)(HNavbar));

@@ -32,7 +32,7 @@ const StyledInnerContainer =  styled.div`
 const HLayout = (props) => {
     return (
         <StyledOuterContainer id={"OuterContainer"}>
-            <HNavbar/>
+            <HNavbar{...props}/>
             <StyledInnerContainer id={"InnerContainer"}>
                 {props.children}
                 </StyledInnerContainer>

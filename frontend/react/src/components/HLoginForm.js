@@ -15,6 +15,9 @@ class HLoginForm extends React.Component {
             email: "",
             password: ""
         };
+        this.closeOnSuccessfulLogin = this.closeOnSuccessfulLogin.bind(this);
+        this.callToggleFromChild = this.callToggleFromChild.bind(this);
+        this.clearState = this.clearState.bind(this);
     }
 
     handleInput = e => {
@@ -24,9 +27,7 @@ class HLoginForm extends React.Component {
     };
 
     handleSubmit(event) {
-        console.log(this.state.email);
-        console.log(this.state.password);
-        this.props.onAuth(this.state.email, this.state.password);
+        this.props.onAuth(this.state.email, this.state.password, this.closeOnSuccessfulLogin);
         event.preventDefault();
     }
 
@@ -34,18 +35,37 @@ class HLoginForm extends React.Component {
         this.props.toggle(this.props.loginFormModal);
     }
 
+    clearState() {
+        this.setState({email: "", password: ""})
+    }
+
+    closeOnSuccessfulLogin() {
+        this.callToggleFromChild();
+        this.clearState();
+    }
+
     closeAndLoadRegister() {
         this.callToggleFromChild();
         this.props.toggle(this.props.registerFormModal);
+    }
+
+    generateErrorArray(errorMessage) {
+        if (typeof this.props.error !== 'string') {
+            errorMessage = [];
+            this.props.error.forEach((err) => {
+                errorMessage.push(<p className="text-center font-weight-bolder">{err}</p>)
+            })
+        } else {
+            errorMessage = <p className="text-center font-weight-bolder">{this.props.error}</p>
+        }
+        return errorMessage;
     }
 
     render() {
 
         let errorMessage = null;
         if (this.props.error) {
-            errorMessage = (
-                <p>{this.props.error.message}</p>
-            );
+            errorMessage = this.generateErrorArray(errorMessage);
         }
 
         return (
@@ -133,11 +153,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: (username, password) => dispatch(actions.authLogin(username, password))
+        onAuth: (email, password, closeModal) => dispatch(actions.authLogin(email, password, closeModal))
     }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HLoginForm);
-
-
-// export default HLoginForm;
